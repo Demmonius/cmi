@@ -12,7 +12,7 @@ var bubble_content =	"<p class='map_contacts'>" +
 
 function initialize() {
 	var mapOptions = {
-		zoom: 13,
+		zoom: 15,
 		center: new google.maps.LatLng(latitude, longitude),
 		mapTypeId: google.maps.MapTypeId.ROADMAP,
 		mapTypeControl: false,
