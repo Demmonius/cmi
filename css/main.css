@@ -4,11 +4,11 @@
     Template Author : http://pixelhint.com
     Author Email    : contact@pixelhint.com
     License    		: http://pixelhint.com/license
-    
-    
+
+
     *****************************************
-    
-    
+
+
     - Fonts
     - Reset Default Foundation Styling
     - Hero
@@ -21,7 +21,7 @@
     - Google Map
     - Footer
     - Responsive CSS
-    
+
 */
 
 
@@ -202,11 +202,11 @@
 .hero{
 	width: 100%;
 	height: 750px;
-	background: url('../img/hero.jpg') no-repeat 50% 50%;
+	background: url('../img/background.jpg') no-repeat 50% 50%;
 	-webkit-background-size: cover;
 	-moz-background-size: cover;
 	-o-background-size: cover;
-	   background-size: cover; 
+	   background-size: cover;
 }
 
 .hero .caption{
@@ -323,12 +323,6 @@ header .top-bar-section li:not(.has-form) a:not(.button):hover{
 
 
 
-
-
-
-
-
-
 /*    Services    */
 
 .services{
@@ -386,7 +380,7 @@ header .top-bar-section li:not(.has-form) a:not(.button):hover{
 }
 
 .services .btn_fancy{
-	margin-top: 100px;	
+	margin-top: 100px;
 }
 
 
@@ -427,11 +421,11 @@ header .top-bar-section li:not(.has-form) a:not(.button):hover{
 
 
 .btn_fancy .border_layer{
-	position: absolute;	
+	position: absolute;
 	top:0;
 	left: 0;
 	width: 100%;
-	height: 100%;	
+	height: 100%;
 	border: 1px dashed #000000;
 	-webkit-transition:all .2s ease-out;
 	     -o-transition:all .2s ease-out;
@@ -443,7 +437,7 @@ header .top-bar-section li:not(.has-form) a:not(.button):hover{
 	top: 4px;
 	left: -4px;
 	width: 100%;
-	height: 100%;	
+	height: 100%;
 	background: #fbdd90;
 	border-radius: 2px;
 	-webkit-transition:all .2s ease-out;
@@ -483,7 +477,7 @@ header .top-bar-section li:not(.has-form) a:not(.button):hover{
 	-webkit-background-size: cover;
 	-moz-background-size: cover;
 	-o-background-size: cover;
-	   background-size: cover; 
+	   background-size: cover;
 	text-align: center;
 }
 
@@ -508,7 +502,7 @@ header .top-bar-section li:not(.has-form) a:not(.button):hover{
 
 .quote hr{
 	display: inline-block;
-	padding: 0;	
+	padding: 0;
 	margin: 0;
 	border: 0;
 	width: 20px;
@@ -550,7 +544,7 @@ header .top-bar-section li:not(.has-form) a:not(.button):hover{
 	padding: 0 20px;
 	text-align: center;
 	float: left;
-} 
+}
 
 .slider_container{
 	max-width: 670px;
@@ -744,7 +738,7 @@ header .top-bar-section li:not(.has-form) a:not(.button):hover{
 
 #map_container .map_contacts span{
 	font-family: "raleway-bold", Helvetica, Arial, sans-serif;
-	font-weight:bold; 
+	font-weight:bold;
 	text-transform:uppercase;
 }
 
@@ -760,53 +754,31 @@ header .top-bar-section li:not(.has-form) a:not(.button):hover{
 /*    Footer    */
 
 footer{
-	padding: 80px 0;
+	padding: 60px 0;
 	background: #535353;
+  text-align: center;
+  text-transform: uppercase;
 }
 
-footer .copyrights{
-	float: left;
-	margin-bottom: 80px;
-}
-
-footer .copyrights p{
-	color: #c5c5c5;
-	font-family: "raleway-regular", Helvetica, Arial, sans-serif;
-	font-size: 12px;
-	letter-spacing: .5px;
-}
-
-footer .contact_details{
-	max-width: 430px;
-	float: right;
-} 
-
-footer .social{
-	width: 130px;
-	display: inline-block;
-}
-
-footer .social ul{
-	margin: 0;
-}
-
-footer .social ul li{
-	margin-bottom: 7px;
-}
-
-footer .social ul li a,
 footer .contact{
-	display: inline-block;
 	color: #fff;
 	font-family: "raleway-regular", Helvetica, Arial, sans-serif;
 	font-size: 14px;
 	letter-spacing: 0.5px;
+  position: relative;
 }
 
-footer .contact{
-	width: 215px;
-	margin-left: 80px;
-	vertical-align: top;
+.contact .title{
+  font-size: 30px;
+	font-family: "raleway-bold", Helvetica, Arial, sans-serif;
+	font-weight: bold;
+  color: white;
+  text-align:center;
+}
+
+.contact .form-group{
+  text-align: left;
+  font-weight: bold;
 }
 
 footer .contact .details{
@@ -909,23 +881,16 @@ footer p{
 		line-height: 60px;
 	}
 
-	footer .copyrights{
-		width: 100%;
-		text-align: center;
-		margin-bottom: 60px;
-	}
-
-
 	footer .social,
 	footer .contact{
 		width: 100%;
 		text-align: center;
 		float: none;
 		margin: 0;
-	}
-
-	footer .contact{
-		margin-top: 60px;
+    font-size: 30px;
+    font-family: "raleway-bold", Helvetica, Arial, sans-serif;
+    font-weight: bold;
+    text-transform: uppercase;
 	}
 }
 
@@ -939,5 +904,5 @@ footer p{
 		right: 40px;
 		bottom: 40px;
 		margin-top: -22px;
-	}	
+	}
 }

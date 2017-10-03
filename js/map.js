@@ -1,8 +1,8 @@
-var map_wrapper = 'map_container';	
+var map_wrapper = 'map_container';
 var longitude = 4.88231159999998;
 var latitude = 45.81555609999999;
 var bubble_content =	"<p class='map_contacts'>" +
-						"<span>Address : </span>" +
+						"<span>Adresse : </span>" +
 						"392 Rue des Mercières, 69140 Rillieux-la-Pape, France" +
 						"</p>";
 
@@ -13,7 +13,7 @@ var bubble_content =	"<p class='map_contacts'>" +
 function initialize() {
 	var mapOptions = {
 		zoom: 13,
-		center: new google.maps.LatLng(longitude, latitude),
+		center: new google.maps.LatLng(latitude, longitude),
 		mapTypeId: google.maps.MapTypeId.ROADMAP,
 		mapTypeControl: false,
 		streetViewControl:false,
@@ -26,7 +26,7 @@ function initialize() {
 	var map = new google.maps.Map(document.getElementById(map_wrapper),mapOptions);
 
 	var marker = new google.maps.Marker({
-	  position:  new google.maps.LatLng(longitude, latitude),
+	  position:  new google.maps.LatLng(latitude, longitude),
 	  map: map,
 	  icon     : "img/marker.png"
 	});
@@ -40,4 +40,4 @@ function initialize() {
 	});
 }
 
-google.maps.event.addDomListener(window, 'load', initialize);
+//google.maps.event.addDomListener(window, 'load', initialize);
