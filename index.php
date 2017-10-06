@@ -143,6 +143,7 @@
 
     <!--  Start Footer Section  -->
     <footer>
+      <!-- Container (Contact Section) -->
       <div class="contact" id="contact">
         <h1 class="title">Contactez-nous !</h1>
           <div class="col-lg-12">
@@ -151,24 +152,29 @@
                 <div class="col-md-6">
                   <div class="form-group">
                     <p>Nom *:</p>
-                    <input class="form-control" id="name" type="text" placeholder="Nom" required data-validation-required-message="Merci de renseigner votre nom.">
+                    <input name="name" lass="form-control" id="name" type="text" placeholder="Nom" required data-validation-required-message="Merci de renseigner votre nom.">
                     <p class="help-block text-danger"></p>
                   </div>
                   <div class="form-group">
                     <p>E-mail *:</p>
-                    <input class="form-control" id="email" type="email" placeholder="E-mail" required data-validation-required-message="Merci de renseigner votre adresse e-mail.">
+                    <input name="email" class="form-control" id="email" type="email" placeholder="E-mail" required data-validation-required-message="Merci de renseigner votre adresse e-mail.">
                     <p class="help-block text-danger"></p>
                   </div>
                   <div class="form-group">
                     <p>Téléphone :</p>
-                    <input class="form-control" id="phone" type="tel" placeholder="N° de téléphone">
+                    <input name="tel" class="form-control" id="phone" type="tel" placeholder="N° de téléphone">
+                    <p class="help-block text-danger"></p>
+                  </div>
+                  <div class="form-group">
+                    <p>Objet :</p>
+                    <input name="objet" class="form-control" id="Objet" type="text" placeholder="Objet">
                     <p class="help-block text-danger"></p>
                   </div>
                 </div>
                 <div class="col-md-6">
                   <div class="form-group">
                     <p>Votre message *:</p>
-                    <textarea class="form-control" id="message" placeholder="Votre message..." required data-validation-required-message="Please enter a message."></textarea>
+                    <textarea name="message" class="form-control" id="message" placeholder="Votre message..." required data-validation-required-message="Please enter a message."></textarea>
                     <p class="help-block text-danger"></p>
                   </div>
                 </div>
@@ -182,6 +188,29 @@
           </div>
         </div>
         </div
+        <?php 
+        $nom=$HTTP_POST_VARS['name']; 
+        $mail=$HTTP_POST_VARS['email']; 
+        $objet=$HTTP_POST_VARS['objet']; 
+        $message=$HTTP_POST_VARS['message']; 
+        
+        /////voici la version Mine 
+        $headers = "MIME-Version: 1.0\r\n"; 
+        
+        //////ici on détermine le mail en format text 
+        $headers .= "Content-type: text/plain; charset=iso-8859-1\r\n"; 
+        
+        ////ici on détermine l'expediteur et l'adresse de réponse 
+        $headers .= "From: $nom <$mail>\r\nReply-to : $nom <$mail>\nX-Mailer:PHP"; 
+        
+        $subject="$objet"; 
+        $destinataire="webmaster@votre-site.com"; //remplacez "webmaster@votre-site.com" par votre adresse e-mail
+        $body="$message"; 
+        if (mail($destinataire,$subject,$body,$headers)) { 
+        echo "Votre mail a été envoyé<br>"; 
+        } else { 
+        echo "Une erreur s'est produite"; 
+        }?>
     </footer>
     <!--  End Footer Section  -->
 
