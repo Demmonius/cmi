@@ -194,28 +194,35 @@
             <?php
             } 
         else                /* send the submitted data */
-            {
-            $name=$_REQUEST['name'];
-            $email=$_REQUEST['email'];
-            $telephone=$_REQUEST['telephone'];
-            if ($telephone == "")
-            {
-              $telephone = "Non renseigné";
-            }
-            $message=$_REQUEST['message'];
-            $text = "Nom du contact: $name\nEmail: $email\nTelephone: $telephone\nMessage: $message";
-            if (($name=="")||($email=="")||($message==""))
-                {
-        		      echo "All fields are required, please fill <a href=\"\">the form</a> again.";
-        	      }
-            else{		
+        {
+          $name=$_REQUEST['name'];
+          $email=$_REQUEST['email'];
+          $telephone=$_REQUEST['telephone'];
+          if ($telephone == "")
+          {
+            $telephone = "Non renseigné";
+          }
+          $message=$_REQUEST['message'];
+          $text = "Nom du contact: $name\nEmail: $email\nTelephone: $telephone\nMessage: $message";
+          if (($name=="")||($email=="")||($message==""))
+              {
+        	      echo "All fields are required, please fill <a href=\"\">the form</a> again.";
+        	    }
+          else
+          {		
         	  $from="From: $name<$email>\r\nReturn-path: $email";
             $subject="Commande de: $name";
-
-        		mail("no-reply@hmartin.fr", $subject, $message, $from);
-        		echo "Email sent!";
-        	    }
-            }  
+            $success = mail("no-reply@hmartin.fr", $subject, $message, $from);
+            if (!$success)
+            {
+              echo "E-mail non-envoyé";
+            }
+            else
+            {
+              echo "E-mail envoyé";
+            }
+        	}
+        }  
         ?>
           </div>
         </div>
