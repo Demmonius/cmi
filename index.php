@@ -147,7 +147,13 @@
       <div class="contact" id="contact">
         <h1 class="title">Contactez-nous !</h1>
           <div class="col-lg-12">
-            <form id="contactForm" method="post" name="sentMessage" action="send_email.php">
+            <?php
+              $action=$_REQUEST['action'];
+              if ($action=="")
+              {
+            ?>
+              <form  id="contactForm" action="" method="POST" enctype="multipart/form-data">
+              <input type="hidden" name="action" value="submit">
               <div class="row">
                 <div class="col-md-6">
                   <div class="form-group">
@@ -185,6 +191,32 @@
                   </a>
               </div>
             </form>
+            <?php
+            } 
+        else                /* send the submitted data */
+            {
+            $name=$_REQUEST['name'];
+            $email=$_REQUEST['email'];
+            $telephone=$_REQUEST['telephone'];
+            if ($telephone == "")
+            {
+              $telephone = "Non renseigné";
+            }
+            $message=$_REQUEST['message'];
+            $text = "Nom du contact: $name\nEmail: $email\nTelephone: $telephone\nMessage: $message";
+            if (($name=="")||($email=="")||($message==""))
+                {
+        		      echo "All fields are required, please fill <a href=\"\">the form</a> again.";
+        	      }
+            else{		
+        	  $from="From: $name<$email>\r\nReturn-path: $email";
+            $subject="Commande de: $name";
+
+        		mail("no-reply@hmartin.fr", $subject, $message, $from);
+        		echo "Email sent!";
+        	    }
+            }  
+        ?>
           </div>
         </div>
     </footer>
