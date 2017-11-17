@@ -103,7 +103,7 @@
 
       <!--    Start Button    -->
       <div class="btn_holder">
-        <a href="#connect" class="btn_fancy">
+        <a href="#contact" class="btn_fancy">
           <div class="solid_layer"></div>
           <div class="border_layer"></div>
           <div class="text_layer">Contactez-nous !</div>
