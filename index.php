@@ -166,16 +166,11 @@
                   <input name="telephone" class="form-control" id="phone" type="tel" placeholder="N° de téléphone">
                   <p class="help-block text-danger"></p>
                 </div>
-                <div class="form-group">
-                  <p>Objet :</p>
-                  <input name="objet" class="form-control" id="Objet" type="text" placeholder="Objet">
-                  <p class="help-block text-danger"></p>
-                </div>
               </div>
               <div class="col-md-6">
                 <div class="form-group">
                   <p>Votre message *:</p>
-                  <textarea name="message" class="form-control" id="message" placeholder="Votre message..." required data-validation-required-message="Please enter a message."></textarea>
+                  <textarea name="message" class="form-control" id="message" placeholder="Votre message..." required data-validation-required-message="Merci de renseigner un message." rows="6" cols="50"></textarea>
                   <p class="help-block text-danger"></p>
                 </div>
               </div>
@@ -190,39 +185,33 @@
               $name=$_REQUEST['name'];
               $email=$_REQUEST['email'];
               $telephone=$_REQUEST['telephone'];
-              if ($telephone == "")
-              {
-                $telephone = "Non renseigné";
-              }
               $message=$_REQUEST['message'];
-              $text = "Nom du contact: $name\nEmail: $email\nTelephone: $telephone\nMessage: $message";
-              if (($name=="")||($email=="")||($message==""))
-                  {
-        	          echo "Merci de renseigné tous les champs";
-        	        }
-              else
-              {		
-                require 'vendor/autoload.php';
 
-                $client = new Postal\Client('https://postal.hmartin.fr', 'iYps0SdDxL8fY8yXdexAD44B');
+	      if ($name != "" || $email != "" || $telephone != "" || $message != "")
+		{
+              $text = "Nom du contact: $name\n\nEmail: $email\n\nTelephone: $telephone\n\nMessage: $message";
 
-                $message = new Postal\SendMessage($client);
+              require 'vendor/autoload.php';
 
-                $message->to('hugo.martin@epitech.eu');
+              $client = new Postal\Client('https://postal.hmartin.fr', 'iYps0SdDxL8fY8yXdexAD44B');
 
-                $message->from('no-reply@hmartin.fr');
+              $message = new Postal\SendMessage($client);
 
-                $message->subject('Hello world');
+              $message->to('hugo.martin@epitech.eu');
 
-                $message->plainBody('Hello world!');
+              $message->from('no-reply@hmartin.fr');
 
-                $result = $message->send();
+              $message->subject('Contact de: '. $name);
 
-                foreach ($result->recipients() as $email => $message) {
+              $message->plainBody($text);
+
+              $result = $message->send();
+
+              foreach ($result->recipients() as $email => $message) {
                     $email;
                     $message->id();
                     $message->token();
-                }
+              }
 }
         ?>
           </div>
