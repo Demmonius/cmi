@@ -147,12 +147,7 @@
       <div class="contact" id="contact">
         <h1 class="title">Contactez-nous !</h1>
           <div class="col-lg-12">
-            <?php
-              $action=$_REQUEST['action'];
-              if ($action=="")
-              {
-            ?>
-              <form  id="contactForm" action="" method="POST" enctype="multipart/form-data">
+            <form  id="contactForm" action="" method="POST" enctype="multipart/form-data">
               <input type="hidden" name="action" value="submit">
               <div class="row">
                 <div class="col-md-6">
@@ -161,68 +156,74 @@
                     <input name="name" lass="form-control" id="name" type="text" placeholder="Nom" required data-validation-required-message="Merci de renseigner votre nom.">
                     <p class="help-block text-danger"></p>
                   </div>
-                  <div class="form-group">
-                    <p>E-mail *:</p>
-                    <input name="email" class="form-control" id="email" type="email" placeholder="E-mail" required data-validation-required-message="Merci de renseigner votre adresse e-mail.">
-                    <p class="help-block text-danger"></p>
-                  </div>
-                  <div class="form-group">
-                    <p>Téléphone :</p>
-                    <input name="telephone" class="form-control" id="phone" type="tel" placeholder="N° de téléphone">
-                    <p class="help-block text-danger"></p>
-                  </div>
-                  <div class="form-group">
-                    <p>Objet :</p>
-                    <input name="objet" class="form-control" id="Objet" type="text" placeholder="Objet">
-                    <p class="help-block text-danger"></p>
-                  </div>
+                <div class="form-group">
+                  <p>E-mail *:</p>
+                  <input name="email" class="form-control" id="email" type="email" placeholder="E-mail" required data-validation-required-message="Merci de renseigner votre adresse e-mail.">
+                  <p class="help-block text-danger"></p>
                 </div>
-                <div class="col-md-6">
-                  <div class="form-group">
-                    <p>Votre message *:</p>
-                    <textarea name="message" class="form-control" id="message" placeholder="Votre message..." required data-validation-required-message="Please enter a message."></textarea>
-                    <p class="help-block text-danger"></p>
-                  </div>
+                <div class="form-group">
+                  <p>Téléphone :</p>
+                  <input name="telephone" class="form-control" id="phone" type="tel" placeholder="N° de téléphone">
+                  <p class="help-block text-danger"></p>
                 </div>
-                <div class="clearfix form-group">*: champ obligatoire</div>
-                <div class="col-lg-12 text-center">
-                  <a href="#">
-                    <button id="sendMessageButton" class="btn btn-xl" type="submit">Send Message</button>
-                  </a>
+                <div class="form-group">
+                  <p>Objet :</p>
+                  <input name="objet" class="form-control" id="Objet" type="text" placeholder="Objet">
+                  <p class="help-block text-danger"></p>
+                </div>
               </div>
+              <div class="col-md-6">
+                <div class="form-group">
+                  <p>Votre message *:</p>
+                  <textarea name="message" class="form-control" id="message" placeholder="Votre message..." required data-validation-required-message="Please enter a message."></textarea>
+                  <p class="help-block text-danger"></p>
+                </div>
+              </div>
+              <div class="clearfix form-group">*: champ obligatoire</div>
+              <div class="col-lg-12 text-center">
+                <a href="#">
+                  <button id="sendMessageButton" class="btn btn-xl" type="submit">Send Message</button>
+                </a>
+            </div>
             </form>
             <?php
-            } 
-        else                /* send the submitted data */
-        {
-          $name=$_REQUEST['name'];
-          $email=$_REQUEST['email'];
-          $telephone=$_REQUEST['telephone'];
-          if ($telephone == "")
-          {
-            $telephone = "Non renseigné";
-          }
-          $message=$_REQUEST['message'];
-          $text = "Nom du contact: $name\nEmail: $email\nTelephone: $telephone\nMessage: $message";
-          if (($name=="")||($email=="")||($message==""))
+              $name=$_REQUEST['name'];
+              $email=$_REQUEST['email'];
+              $telephone=$_REQUEST['telephone'];
+              if ($telephone == "")
               {
-        	      echo "All fields are required, please fill <a href=\"\">the form</a> again.";
-        	    }
-          else
-          {		
-        	  $from="From: $name<$email>\r\nReturn-path: $email";
-            $subject="Commande de: $name";
-            $success = mail("no-reply@hmartin.fr", $subject, $message, $from);
-            if (!$success)
-            {
-              echo "E-mail non-envoyé";
-            }
-            else
-            {
-              echo "E-mail envoyé";
-            }
-        	}
-        }  
+                $telephone = "Non renseigné";
+              }
+              $message=$_REQUEST['message'];
+              $text = "Nom du contact: $name\nEmail: $email\nTelephone: $telephone\nMessage: $message";
+              if (($name=="")||($email=="")||($message==""))
+                  {
+        	          echo "Merci de renseigné tous les champs";
+        	        }
+              else
+              {		
+                require 'vendor/autoload.php';
+
+                $client = new Postal\Client('https://postal.hmartin.fr', 'iYps0SdDxL8fY8yXdexAD44B');
+
+                $message = new Postal\SendMessage($client);
+
+                $message->to('hugo.martin@epitech.eu');
+
+                $message->from('no-reply@hmartin.fr');
+
+                $message->subject('Hello world');
+
+                $message->plainBody('Hello world!');
+
+                $result = $message->send();
+
+                foreach ($result->recipients() as $email => $message) {
+                    $email;
+                    $message->id();
+                    $message->token();
+                }
+}
         ?>
           </div>
         </div>
